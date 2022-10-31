@@ -1,0 +1,73 @@
+# Python3 program to solve N Queen
+
+global N
+N = 4
+
+def printsol(box):
+	for i in range(N):
+		for j in range(N):
+			print(box[i][j], end = " ")
+		print()
+
+
+def isSafe(box, row, col):
+
+	
+	for i in range(col):
+		if box[row][i] == 1:
+			return False
+
+	
+	for i, j in zip(range(row, -1, -1),
+					range(col, -1, -1)):
+		if box[i][j] == 1:
+			return False
+
+	
+	for i, j in zip(range(row, N, 1),
+					range(col, -1, -1)):
+		if box[i][j] == 1:
+			return False
+
+	return True
+
+def solvepathtrackUtil(box, col):
+	
+	
+	if col >= N:
+		return True
+
+	
+	for i in range(N):
+
+		if isSafe(box, i, col):
+			
+			
+			box[i][col] = 1
+
+			
+			if solvepathtrackUtil(box, col + 1) == True:
+				return True
+
+			
+			box[i][col] = 0
+
+	
+	return False
+
+
+def solvepathtrack():
+	box = [ [0, 0, 0, 0],
+			[0, 0, 0, 0],
+			[0, 0, 0, 0],
+			[0, 0, 0, 0] ]
+
+	if solvepathtrackUtil(box, 0) == False:
+		print ("Solution does not exist")
+		return False
+
+	printsol(box)
+	return True
+
+solvepathtrack()
+
