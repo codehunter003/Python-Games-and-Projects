@@ -1,0 +1,31 @@
+# Python code for Josephus Problem
+def kill(per, k, ind):
+
+
+if len(per) == 1:
+	print(per[0])
+	return
+
+ind = ((ind+k)%len(per))
+
+
+per.pop(ind)
+
+
+kill(per,k,ind)
+
+
+n = 14 
+k = 2
+k-=1 
+
+index = 0
+
+
+per=[]
+for i in range(1,n+1):
+per.append(i)
+
+kill(per,k,ind)
+
+
