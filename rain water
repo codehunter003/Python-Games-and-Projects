@@ -1,0 +1,21 @@
+class Solution {
+    public int rain_water_trap(int[] h) {
+        int r = 0;
+        int s = 0;
+        int e = h.length - 1;
+        while (s < e) {
+            if (h[st] <= h[e]) {
+                int curr = h[s];
+                while (h[++s] < curr) {
+                    r += curr - h[s];
+                }
+            } else {
+                int curr = h[e];
+                while(h[--e] < curr) {
+                    r += curr - h[e];
+                }
+            }
+        }
+        return r;
+    }
+}
